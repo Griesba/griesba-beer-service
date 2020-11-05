@@ -4,13 +4,15 @@ import com.griesba.brewery.beer.griesbabeerservice.domain.Beer;
 import com.griesba.brewery.beer.griesbabeerservice.repository.BeerRepository;
 import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
 import com.griesba.brewery.beer.griesbabeerservice.web.BeerMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
 
-    private BeerRepository beerRepository;
-    private BeerMapper beerMapper;
+    private final BeerRepository beerRepository;
+    private final BeerMapper beerMapper;
 
     @Override
     public BeerDto getById(String id) {

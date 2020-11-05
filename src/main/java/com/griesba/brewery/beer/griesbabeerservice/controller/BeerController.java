@@ -2,17 +2,24 @@ package com.griesba.brewery.beer.griesbabeerservice.controller;
 
 import com.griesba.brewery.beer.griesbabeerservice.service.BeerService;
 import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/api/v1/beer")
+@RestController
+@RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class BeerController {
 
-    private BeerService beerService;
+    private final BeerService beerService;
 
-    @GetMapping("{beerId}")
-    public BeerDto getBeer(String beerId) {
+    @GetMapping("/beer/{beerId}")
+    public BeerDto getBeer(@PathVariable String beerId) {
         return beerService.getById(beerId);
+    }
+
+    @PostMapping("/beer")
+    public BeerDto create(@RequestBody BeerDto beerDto) {
+        return beerService.saveBeer(beerDto);
     }
 
 }
