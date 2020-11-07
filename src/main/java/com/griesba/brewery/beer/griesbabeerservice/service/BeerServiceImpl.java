@@ -32,7 +32,7 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public BeerDto updateBeer(BeerDto beerDto) {
-        Beer beer = beerRepository.findById(beerDto.getId()).orElse(null);
+        Beer beer = beerRepository.findById(beerDto.getId().toString()).orElse(null);
         if (beer != null) {
             beer.setName(beerDto.getName());
             beer.setMinOnHand(beerDto.getMinOnHand());
