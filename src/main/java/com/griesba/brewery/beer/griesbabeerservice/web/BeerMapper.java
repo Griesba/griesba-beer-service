@@ -5,7 +5,7 @@ import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 @DecoratedWith(BeerMapperDecorator.class)
 public interface BeerMapper {
 
