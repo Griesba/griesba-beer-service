@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +39,8 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerDto updateBeer(BeerDto beerDto) {
-        Beer beer = beerRepository.findById(beerDto.getId().toString()).orElse(null);
+    public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
+        Beer beer = beerRepository.findById(beerId.toString()).orElse(null);
         if (beer != null) {
             beer.setName(beerDto.getName());
             beer.setMinOnHand(beerDto.getMinOnHand());

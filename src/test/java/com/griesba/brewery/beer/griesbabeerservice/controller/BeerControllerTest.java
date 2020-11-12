@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BeerController.class)
@@ -56,6 +57,19 @@ private static String BASE_URL = "/api/v1/beer";
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(beerDto))
         ).andExpect(status().isCreated());
+    }
+
+    @Test
+    public void shouldUpdateBeer() throws Exception {
+        BeerDto beerDto = buildBeerDto();
+
+        BDDMockito.given(beerService.updateBeer(any(), any())).willReturn(beerDto);
+
+        mockMvc.perform(put(BASE_URL + "/" + UUID.randomUUID())
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(beerDto)))
+                .andExpect(status().isNoContent());
     }
 
     public BeerDto buildBeerDto() {
