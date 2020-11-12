@@ -1,6 +1,7 @@
 package com.griesba.brewery.beer.griesbabeerservice.web;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
+@Builder
 public class BeerDto implements Serializable {
     private static final long serialVersionUID = -6808953121505951649L;
 

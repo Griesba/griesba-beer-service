@@ -5,6 +5,7 @@ import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
 import com.griesba.brewery.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -33,6 +34,7 @@ public class BeerController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public BeerDto create(@RequestBody BeerDto beerDto) {
         return beerService.saveBeer(beerDto);
     }
