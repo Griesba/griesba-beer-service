@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class Bootstrap implements CommandLineRunner {
 
     public static final String BEER_1_UPC = "0631234200036";
