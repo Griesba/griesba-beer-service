@@ -8,10 +8,8 @@ import com.griesba.brewery.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -23,15 +21,14 @@ public class BeerServiceImpl implements BeerService {
     private final BeerMapper beerMapper;
 
     @Override
-    public BeerDto getById(String id) {
-        return beerMapper.beerToBeerDto(
-                beerRepository.findById(id).orElseThrow()
-        );
+    public BeerDto getById(UUID id, boolean showIOH) {
+        Beer beer = beerRepository.findById(id).orElseThrow();
+        return showIOH ? beerMapper.beerToBeerDtoWithInventory(beer) : beerMapper.beerToBeerDto(beer);
     }
 
     @Override
     public BeerDto saveBeer(BeerDto beerDto) {
-        return beerMapper.beerToBeerDto(
+        return beerMapper.beerToBeerDtoWithInventory(
                 beerRepository.save(
                         beerMapper.beerDtoToBeer(beerDto)
                 )
@@ -40,27 +37,32 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
-        Beer beer = beerRepository.findById(beerId.toString()).orElse(null);
+        Beer beer = beerRepository.findById(beerId).orElse(null);
         if (beer != null) {
             beer.setName(beerDto.getName());
             beer.setMinOnHand(beerDto.getMinOnHand());
             beer.setPrice(beerDto.getPrice());
             beer.setQuantityToBrew(beerDto.getQuantityToBrew());
             beer.setUpc(beerDto.getUpc());
-            return beerMapper.beerToBeerDto(beerRepository.save(beer));
+            return beerMapper.beerToBeerDtoWithInventory(beerRepository.save(beer));
         } else {
-            return beerMapper.beerToBeerDto(beerRepository.save(beerMapper.beerDtoToBeer(beerDto)));
+            return beerMapper.beerToBeerDtoWithInventory(beerRepository.save(beerMapper.beerDtoToBeer(beerDto)));
         }
     }
 
     @Override
-    public BeerPagedList find(int pageNumber, int pageSize) {
+    public BeerPagedList find(int pageNumber, int pageSize, boolean showInventoryOnHand) {
          Page<Beer> beerPage = beerRepository.findAll(PageRequest.of(pageNumber, pageSize));
 
-         return new BeerPagedList(
-                 beerPage.getContent().stream().map(beerMapper::beerToBeerDto).collect(Collectors.toList()),
-                 PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
-                 beerPage.getTotalElements());
+         return showInventoryOnHand ?
+                 new BeerPagedList(
+                         beerPage.getContent().stream().map(beerMapper::beerToBeerDtoWithInventory).collect(Collectors.toList()),
+                         PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
+                         beerPage.getTotalElements())
+                 : new BeerPagedList(
+                         beerPage.getContent().stream().map(beerMapper::beerToBeerDto).collect(Collectors.toList()),
+                         PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
+                         beerPage.getTotalElements());
 
     }
 }

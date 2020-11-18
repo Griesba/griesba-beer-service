@@ -2,6 +2,7 @@ package com.griesba.brewery.beer.griesbabeerservice.service.inventory;
 
 import ch.qos.logback.classic.spi.TurboFilterList;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 
+@Slf4j
 @Service
 @ConfigurationProperties(prefix = "griesba.brewery", ignoreInvalidFields = false)
 public class InventoryClient  {
@@ -35,12 +37,13 @@ public class InventoryClient  {
 
     public Integer listBeerInventory(UUID beerId) {
         String url = beerInventoryServiceHost + "/api/v1/beer/{beerId}/inventory";
+        log.info("calling beer inventory service quantityOnHand for beerId {}", beerId);
         ResponseEntity<List<BeerInventoryDto>> responseEntity =  inventoryClient.exchange(
                 url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<BeerInventoryDto>>(){},
-                (Object)beerId);
+                beerId);
 
         return  Objects.requireNonNull(responseEntity.getBody())
                 .stream().mapToInt(BeerInventoryDto::getQuantityOnHand).sum();

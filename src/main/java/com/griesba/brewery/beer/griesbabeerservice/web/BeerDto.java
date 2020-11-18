@@ -28,7 +28,7 @@ public class BeerDto implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime modificationDate;
 
-    private int quantityOnHand;
+    private Integer quantityOnHand;
 
     @Builder
     public BeerDto(UUID id, String name, String version, String style, String upc, double price, Integer quantityToBrew, Integer minOnHand, OffsetDateTime createdDate, OffsetDateTime modificationDate, int quantityOnHand) {

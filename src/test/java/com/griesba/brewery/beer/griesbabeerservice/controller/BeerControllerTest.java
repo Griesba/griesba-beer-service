@@ -1,6 +1,5 @@
 package com.griesba.brewery.beer.griesbabeerservice.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.griesba.brewery.beer.griesbabeerservice.service.BeerService;
 import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
@@ -39,7 +38,7 @@ private static String BASE_URL = "/api/v1/beer";
 
     @Test
     public void shouldTestGetBeerById() throws Exception {
-        BDDMockito.given(beerService.getById(any())).willReturn(buildBeerDto());
+        BDDMockito.given(beerService.getById(any(), false)).willReturn(buildBeerDto());
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/" + UUID.randomUUID())
                 .contentType(MediaType.APPLICATION_JSON)

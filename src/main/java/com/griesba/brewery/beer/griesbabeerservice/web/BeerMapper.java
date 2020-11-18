@@ -11,7 +11,9 @@ public interface BeerMapper {
 
     BeerMapper INSTANCE = Mappers.getMapper(BeerMapper.class);
 
-    BeerDto beerToBeerDto(Beer beer);
+    BeerDto beerToBeerDtoWithInventory(Beer beer);
 
     Beer beerDtoToBeer(BeerDto beerDto);
+
+    BeerDto beerToBeerDto(Beer orElseThrow);
 }

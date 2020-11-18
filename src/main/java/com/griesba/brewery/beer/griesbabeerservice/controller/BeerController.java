@@ -9,9 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.List;
 import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/beer")
@@ -21,18 +20,20 @@ public class BeerController {
     private final BeerService beerService;
 
     @GetMapping("/{beerId}")
-    public BeerDto getBeer(@PathVariable String beerId) {
-        return beerService.getById(beerId);
+    public BeerDto getBeer(@PathVariable UUID beerId,
+                           @RequestParam(value = "showInventoryOnHand", required = false, defaultValue = "false") boolean showIOH) {
+        return beerService.getById(beerId, showIOH);
     }
 
     @GetMapping(produces = {"application/json"})
     public BeerPagedList getBeers(@RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
                                   @DefaultValue("10")
-                                  @PathParam(value = "pageSize") Integer pageSize){
+                                  @RequestParam(value = "pageSize") Integer pageSize,
+                                  @RequestParam(value = "showInventoryOnHand", required = false, defaultValue = "false") boolean showIOH){
         if (pageSize == null) {
             pageSize = 10;
         }
-        return beerService.find(pageNumber, pageSize);
+        return beerService.find(pageNumber, pageSize, showIOH);
     }
 
     @PostMapping
