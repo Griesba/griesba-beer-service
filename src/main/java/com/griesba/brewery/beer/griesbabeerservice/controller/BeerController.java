@@ -28,7 +28,7 @@ public class BeerController {
     @GetMapping(produces = {"application/json"})
     public BeerPagedList getBeers(@RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
                                   @DefaultValue("10")
-                                  @RequestParam(value = "pageSize") Integer pageSize,
+                                  @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                   @RequestParam(value = "showInventoryOnHand", required = false, defaultValue = "false") boolean showIOH){
         if (pageSize == null) {
             pageSize = 10;

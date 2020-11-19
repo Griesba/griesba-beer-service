@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
-
+// instances of this class are cached hence they should be serializable
 public class BeerPagedList extends PageImpl<BeerDto>  implements Serializable {
 
     private static final long serialVersionUID = -7846729646354690140L;

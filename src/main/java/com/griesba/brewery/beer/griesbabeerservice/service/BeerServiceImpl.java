@@ -6,6 +6,8 @@ import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
 import com.griesba.brewery.beer.griesbabeerservice.web.BeerMapper;
 import com.griesba.brewery.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
@@ -20,10 +23,12 @@ public class BeerServiceImpl implements BeerService {
     private final BeerRepository beerRepository;
     private final BeerMapper beerMapper;
 
+    @Cacheable(cacheNames = "beerCache", key = "#id", condition = "#showInventoryOnHand = true ")
     @Override
-    public BeerDto getById(UUID id, boolean showIOH) {
+    public BeerDto getById(UUID id, boolean showInventoryOnHand) {
+        log.info("### Find beer by id request");
         Beer beer = beerRepository.findById(id).orElseThrow();
-        return showIOH ? beerMapper.beerToBeerDtoWithInventory(beer) : beerMapper.beerToBeerDto(beer);
+        return showInventoryOnHand ? beerMapper.beerToBeerDtoWithInventory(beer) : beerMapper.beerToBeerDto(beer);
     }
 
     @Override
@@ -50,9 +55,11 @@ public class BeerServiceImpl implements BeerService {
         }
     }
 
+    @Cacheable(cacheNames = "beerListCache", condition = "#showInventoryOnHand = true")
     @Override
     public BeerPagedList find(int pageNumber, int pageSize, boolean showInventoryOnHand) {
-         Page<Beer> beerPage = beerRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        log.info("### Find beers request");
+        Page<Beer> beerPage = beerRepository.findAll(PageRequest.of(pageNumber, pageSize));
 
          return showInventoryOnHand ?
                  new BeerPagedList(

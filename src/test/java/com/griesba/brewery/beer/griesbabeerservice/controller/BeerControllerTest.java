@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,7 +39,7 @@ private static String BASE_URL = "/api/v1/beer";
 
     @Test
     public void shouldTestGetBeerById() throws Exception {
-        BDDMockito.given(beerService.getById(any(), false)).willReturn(buildBeerDto());
+        BDDMockito.given(beerService.getById(any(), anyBoolean())).willReturn(buildBeerDto());
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/" + UUID.randomUUID())
                 .contentType(MediaType.APPLICATION_JSON)
