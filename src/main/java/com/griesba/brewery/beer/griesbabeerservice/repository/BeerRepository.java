@@ -8,4 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface BeerRepository extends PagingAndSortingRepository<Beer, UUID> {
+
+    Beer findByUpc(String upc);
 }
