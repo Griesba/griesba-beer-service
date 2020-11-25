@@ -15,7 +15,7 @@ public class BeerDto implements Serializable {
 
     private UUID id;
     private String name;
-    private String version;
+    private Long version;
     private String style;
     private String upc;
     private double price;
@@ -31,7 +31,7 @@ public class BeerDto implements Serializable {
     private Integer quantityOnHand;
 
     @Builder
-    public BeerDto(UUID id, String name, String version, String style, String upc, double price, Integer quantityToBrew, Integer minOnHand, OffsetDateTime createdDate, OffsetDateTime modificationDate, int quantityOnHand) {
+    public BeerDto(UUID id, String name, Long version, String style, String upc, double price, Integer quantityToBrew, Integer minOnHand, OffsetDateTime createdDate, OffsetDateTime modificationDate, int quantityOnHand) {
         this.id = id;
         this.name = name;
         this.version = version;
