@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.griesbabeerservice.config;
+package com.griesba.brewery.beer.service.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ehcache.event.CacheEvent;

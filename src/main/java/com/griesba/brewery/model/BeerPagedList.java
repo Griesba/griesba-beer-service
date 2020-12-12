@@ -3,7 +3,7 @@ package com.griesba.brewery.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
+import com.griesba.brewery.beer.service.web.BeerDto;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

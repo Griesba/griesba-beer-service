@@ -17,7 +17,7 @@
 
     <listeners>
       <listener>
-        <class>com.griesba.brewery.beer.griesbabeerservice.config.CacheEventLoader</class>
+        <class>com.griesba.brewery.beer.service.config.CacheEventLoader</class>
         <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
         <event-ordering-mode>UNORDERED</event-ordering-mode>
         <events-to-fire-on>CREATED</events-to-fire-on>

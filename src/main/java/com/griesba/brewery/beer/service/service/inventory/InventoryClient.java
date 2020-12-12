@@ -1,7 +1,5 @@
-package com.griesba.brewery.beer.griesbabeerservice.service.inventory;
+package com.griesba.brewery.beer.service.service.inventory;
 
-import ch.qos.logback.classic.spi.TurboFilterList;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;

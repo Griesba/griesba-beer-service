@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.griesbabeerservice.web;
+package com.griesba.brewery.beer.service.web;
 
 import org.springframework.stereotype.Component;
 

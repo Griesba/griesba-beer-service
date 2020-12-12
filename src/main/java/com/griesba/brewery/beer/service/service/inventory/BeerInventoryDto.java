@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.griesbabeerservice.service.inventory;
+package com.griesba.brewery.beer.service.service.inventory;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

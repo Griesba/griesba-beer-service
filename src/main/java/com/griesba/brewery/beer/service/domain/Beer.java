@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.griesbabeerservice.domain;
+package com.griesba.brewery.beer.service.domain;
 
 import lombok.Builder;
 import lombok.Data;

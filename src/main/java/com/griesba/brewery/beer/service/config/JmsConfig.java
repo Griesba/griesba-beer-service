@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.griesbabeerservice.config;
+package com.griesba.brewery.beer.service.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;

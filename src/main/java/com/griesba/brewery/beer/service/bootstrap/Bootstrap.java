@@ -1,12 +1,10 @@
-package com.griesba.brewery.beer.griesbabeerservice.bootstrap;
+package com.griesba.brewery.beer.service.bootstrap;
 
-import com.griesba.brewery.beer.griesbabeerservice.domain.Beer;
-import com.griesba.brewery.beer.griesbabeerservice.domain.BeerStyleEnum;
-import com.griesba.brewery.beer.griesbabeerservice.repository.BeerRepository;
-import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
+import com.griesba.brewery.beer.service.domain.Beer;
+import com.griesba.brewery.beer.service.domain.BeerStyleEnum;
+import com.griesba.brewery.beer.service.repository.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 

@@ -1,11 +1,10 @@
-package com.griesba.brewery.beer.griesbabeerservice.web;
+package com.griesba.brewery.beer.service.web;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 

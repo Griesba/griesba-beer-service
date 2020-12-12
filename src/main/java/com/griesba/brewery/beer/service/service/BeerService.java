@@ -1,6 +1,6 @@
-package com.griesba.brewery.beer.griesbabeerservice.service;
+package com.griesba.brewery.beer.service.service;
 
-import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
+import com.griesba.brewery.beer.service.web.BeerDto;
 import com.griesba.brewery.model.BeerPagedList;
 
 import java.util.UUID;

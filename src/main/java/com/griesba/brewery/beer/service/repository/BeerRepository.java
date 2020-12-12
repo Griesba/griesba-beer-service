@@ -1,6 +1,6 @@
-package com.griesba.brewery.beer.griesbabeerservice.repository;
+package com.griesba.brewery.beer.service.repository;
 
-import com.griesba.brewery.beer.griesbabeerservice.domain.Beer;
+import com.griesba.brewery.beer.service.domain.Beer;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package com.griesba.brewery.beer.griesbabeerservice.controller;
+package com.griesba.brewery.beer.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.griesba.brewery.beer.griesbabeerservice.service.BeerService;
-import com.griesba.brewery.beer.griesbabeerservice.web.BeerDto;
+import com.griesba.brewery.beer.service.service.BeerService;
+import com.griesba.brewery.beer.service.web.BeerDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
