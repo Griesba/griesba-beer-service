@@ -1,20 +1,18 @@
 
 package com.griesba.brewery.model.events;
 
+import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.griesba.brewery.model.BeerDto;
 
-/**
- * this is generated automatically by jsonschama2pojo maven plugin
- */
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "beerDto"
 })
-public class BeerEvent {
+public class BeerEvent implements Serializable
+{
 
     @JsonProperty("beerDto")
     private BeerDto beerDto;

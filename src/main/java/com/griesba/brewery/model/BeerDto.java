@@ -1,16 +1,13 @@
 
 package com.griesba.brewery.model;
 
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-/**
- * this is generated automatically by jsonschama2pojo maven plugin
- */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -26,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "createdDate",
     "modificationDate"
 })
-public class BeerDto {
+public class BeerDto implements Serializable
+{
 
     @JsonProperty("id")
     private UUID id;

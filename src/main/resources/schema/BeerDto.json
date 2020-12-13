@@ -1,6 +1,7 @@
 {
   "type": "object",
   "additionalProperties": false,
+  "javaInterfaces" : ["java.io.Serializable"],
   "properties": {
     "id": {
       "type": "string",
