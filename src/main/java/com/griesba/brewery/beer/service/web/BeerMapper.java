@@ -1,6 +1,7 @@
 package com.griesba.brewery.beer.service.web;
 
 import com.griesba.brewery.beer.service.domain.Beer;
+import com.griesba.brewery.model.BeerDto;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

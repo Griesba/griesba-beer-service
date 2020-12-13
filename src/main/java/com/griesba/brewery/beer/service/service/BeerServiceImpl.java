@@ -2,8 +2,8 @@ package com.griesba.brewery.beer.service.service;
 
 import com.griesba.brewery.beer.service.domain.Beer;
 import com.griesba.brewery.beer.service.repository.BeerRepository;
-import com.griesba.brewery.beer.service.web.BeerDto;
 import com.griesba.brewery.beer.service.web.BeerMapper;
+import com.griesba.brewery.model.BeerDto;
 import com.griesba.brewery.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

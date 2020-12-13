@@ -1,7 +1,7 @@
 package com.griesba.brewery.beer.service.controller;
 
 import com.griesba.brewery.beer.service.service.BeerService;
-import com.griesba.brewery.beer.service.web.BeerDto;
+import com.griesba.brewery.model.BeerDto;
 import com.griesba.brewery.model.BeerPagedList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.bind.DefaultValue;

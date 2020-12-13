@@ -2,7 +2,7 @@ package com.griesba.brewery.beer.service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.griesba.brewery.beer.service.service.BeerService;
-import com.griesba.brewery.beer.service.web.BeerDto;
+import com.griesba.brewery.model.BeerDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -72,13 +72,18 @@ private static String BASE_URL = "/api/v1/beer";
                 .andExpect(status().isNoContent());
     }
 
+    @Test
+    public void whatIsOffSetDateTime() {
+
+    }
+
     public BeerDto buildBeerDto() {
-        return BeerDto.builder()
-                .id(UUID.randomUUID())
-                .upc("12345666")
-                .name("Corona")
-                .style("Blond")
-                .price(2.4d)
+        return new BeerDto.BeerDtoBuilder()
+                .withId(UUID.randomUUID())
+                .withUpc("12345666")
+                .withName("Corona")
+                .withStyle("Blond")
+                .withPrice(2.4d)
                 .build();
     }
 }

@@ -2,6 +2,7 @@ package com.griesba.brewery.beer.service.web;
 
 import com.griesba.brewery.beer.service.domain.Beer;
 import com.griesba.brewery.beer.service.service.inventory.InventoryClient;
+import com.griesba.brewery.model.BeerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BeerMapperDecorator  implements BeerMapper{

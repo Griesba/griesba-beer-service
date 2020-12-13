@@ -13,7 +13,7 @@ public class DateMapper {
         if (timestamp != null) {
             LocalDateTime localDateTime = timestamp.toLocalDateTime();
             return OffsetDateTime.of(
-                    localDateTime.getDayOfYear(),
+                    localDateTime.getYear(),
                     localDateTime.getMonthValue(),
                     localDateTime.getDayOfMonth(),
                     localDateTime.getHour(),
