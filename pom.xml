@@ -54,6 +54,7 @@
               <useInnerClassBuilders>true</useInnerClassBuilders>
               <includeToString>false</includeToString>
               <includeHashcodeAndEquals>false</includeHashcodeAndEquals>
+              <includeConstructors>true</includeConstructors>
             </configuration>
           </execution>
         </executions>

@@ -1,4 +1,4 @@
-package com.griesba.brewery.beer.service.service;
+package com.griesba.brewery.beer.service.service.brewing;
 
 
 import com.griesba.brewery.beer.service.config.JmsConfig;
