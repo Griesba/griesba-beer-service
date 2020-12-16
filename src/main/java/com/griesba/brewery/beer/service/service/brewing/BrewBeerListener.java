@@ -29,6 +29,7 @@ public class BrewBeerListener {
 
             log.info("Brewed beer {}: QOH {}", beer.getMinOnHand(), beer.getQuantityToBrew());
             NewInventoryEvent newInventoryEvent = new NewInventoryEvent();
+            newInventoryEvent.setBeerDto(beerEvent.getBeerDto());
             jmsTemplate.convertAndSend(NEW_INVENTORY_QUEUE, newInventoryEvent);
         }
 
