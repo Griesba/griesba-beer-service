@@ -1,13 +1,14 @@
 package com.griesba.brewery.beer.service.web;
 
 import com.griesba.brewery.beer.service.domain.Beer;
-import com.griesba.brewery.beer.service.service.inventory.InventoryClient;
+import com.griesba.brewery.beer.service.service.inventory.InventoryRestTemplateClient;
+import com.griesba.brewery.beer.service.service.inventory.InventoryService;
 import com.griesba.brewery.model.BeerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BeerMapperDecorator  implements BeerMapper{
     private BeerMapper beerMapper;
-    private InventoryClient inventoryClient;
+    private InventoryService inventoryClient;
 
     @Autowired
     public void setBeerMapper(BeerMapper beerMapper) {
@@ -15,14 +16,14 @@ public abstract class BeerMapperDecorator  implements BeerMapper{
     }
 
     @Autowired
-    public void setInventoryClient(InventoryClient inventoryClient) {
+    public void setInventoryClient(InventoryService inventoryClient) {
         this.inventoryClient = inventoryClient;
     }
 
     @Override
     public BeerDto beerToBeerDtoWithInventory(Beer beer) {
         BeerDto beerDto = beerMapper.beerToBeerDtoWithInventory(beer);
-        beerDto.setQuantityOnHand(inventoryClient.listBeerInventory(beer.getId()));
+        beerDto.setQuantityOnHand(inventoryClient.getOnHandInventory(beer.getId()));
         return beerDto;
     }
 

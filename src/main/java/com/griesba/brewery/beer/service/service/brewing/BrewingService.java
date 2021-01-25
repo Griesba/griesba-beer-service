@@ -4,7 +4,8 @@ package com.griesba.brewery.beer.service.service.brewing;
 import com.griesba.brewery.beer.service.config.JmsConfig;
 import com.griesba.brewery.beer.service.domain.Beer;
 import com.griesba.brewery.beer.service.repository.BeerRepository;
-import com.griesba.brewery.beer.service.service.inventory.InventoryClient;
+import com.griesba.brewery.beer.service.service.inventory.InventoryRestTemplateClient;
+import com.griesba.brewery.beer.service.service.inventory.InventoryService;
 import com.griesba.brewery.beer.service.web.BeerMapper;
 import com.griesba.brewery.model.events.BrewBeerEvent;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import java.util.stream.StreamSupport;
 @Service
 @RequiredArgsConstructor
 public class BrewingService {
-    private final InventoryClient inventoryClient;
+    private final InventoryService inventoryClient;
     private final BeerRepository beerRepository;
     private final JmsTemplate jmsTemplate;
     private final BeerMapper beerMapper;
@@ -30,7 +31,7 @@ public class BrewingService {
                 .collect(Collectors.toList());
 
         beerList.forEach(beer -> {
-            Integer inventoryQuantityOnHand = inventoryClient.listBeerInventory(beer.getId());
+            Integer inventoryQuantityOnHand = inventoryClient.getOnHandInventory(beer.getId());
 
             if (inventoryQuantityOnHand <= beer.getMinOnHand()) {
 

@@ -4,9 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,13 +17,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-
+@Profile("!local-discovery")
 @Slf4j
-@Service
+@Component
 @ConfigurationProperties(prefix = "griesba.brewery", ignoreInvalidFields = false)
-public class InventoryClient  {
+public class InventoryRestTemplateClient implements InventoryService{
 
-    private RestTemplate inventoryClient;
+    static final String INVENTORY_PATH = "/api/v1/beer/{beerId}/inventory";
+
+    private RestTemplate restTemplate;
 
     private String beerInventoryServiceHost;
 
@@ -29,14 +34,15 @@ public class InventoryClient  {
     }
 
     @Autowired
-    public InventoryClient(RestTemplateBuilder restTemplateBuilder) {
-        this.inventoryClient = restTemplateBuilder.build();
+    public InventoryRestTemplateClient(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
     }
 
-    public Integer listBeerInventory(UUID beerId) {
-        String url = beerInventoryServiceHost + "/api/v1/beer/{beerId}/inventory";
+    @Override
+    public Integer getOnHandInventory(UUID beerId) {
+        String url = beerInventoryServiceHost + INVENTORY_PATH;
         log.info("calling beer inventory service quantityOnHand for beerId {}", beerId);
-        ResponseEntity<List<BeerInventoryDto>> responseEntity =  inventoryClient.exchange(
+        ResponseEntity<List<BeerInventoryDto>> responseEntity =  restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
