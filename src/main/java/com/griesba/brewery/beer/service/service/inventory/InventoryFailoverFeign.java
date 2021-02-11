@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(name = "inventor-failover")
+@FeignClient(name = "inventory-failover")
 public interface InventoryFailoverFeign {
-    @RequestMapping(method = RequestMethod.GET, value = "/inventor-failover")
+    @RequestMapping(method = RequestMethod.GET, value = "/inventory-failover")
     ResponseEntity<List<BeerInventoryDto>> getOnHandInventory();
 }

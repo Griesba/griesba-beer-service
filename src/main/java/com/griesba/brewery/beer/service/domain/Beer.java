@@ -25,7 +25,7 @@ public class Beer {
         this.upc = upc;
         this.price = price;
         this.quantityToBrew = quantityToBrew;
-        this.quantityOnHand = quantityOnHand;
+        //this.quantityOnHand = quantityOnHand; retrieve from inventory
         this.minOnHand = minOnHand;
         this.createdDate = createdDate;
         this.modificationDate = modificationDate;
@@ -52,7 +52,7 @@ public class Beer {
 
     private Integer quantityToBrew;
 
-    private Integer quantityOnHand;
+    //private Integer quantityOnHand; retrieve from inventory service. present only in the DTO
 
     private Integer minOnHand;
 
