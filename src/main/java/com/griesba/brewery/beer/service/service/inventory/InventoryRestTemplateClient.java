@@ -2,15 +2,14 @@ package com.griesba.brewery.beer.service.service.inventory;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.UUID;
 @Profile("!local-discovery")
 @Slf4j
 @Component
-@ConfigurationProperties(prefix = "griesba.brewery", ignoreInvalidFields = false)
+@ConfigurationProperties(prefix = "griesba.brewery", ignoreInvalidFields = true)
 public class InventoryRestTemplateClient implements InventoryService{
 
     static final String INVENTORY_PATH = "/api/v1/beer/{beerId}/inventory";
@@ -34,8 +33,12 @@ public class InventoryRestTemplateClient implements InventoryService{
     }
 
     @Autowired
-    public InventoryRestTemplateClient(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplate = restTemplateBuilder.build();
+    public InventoryRestTemplateClient(RestTemplateBuilder restTemplateBuilder,
+                                       @Value("${griesba.brewery.inventory-user}") String inventoryUser,
+                                       @Value("${griesba.brewery.inventory-password}") String inventoryPassword) {
+        this.restTemplate = restTemplateBuilder
+                .basicAuthentication(inventoryUser, inventoryPassword)
+                .build();
     }
 
     @Override
